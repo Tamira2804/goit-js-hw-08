@@ -13,18 +13,10 @@ player.on('timeupdate', function (data) {
   updateTimeInStorage(currentTime);
 });
 
-player.on('play', function () {
-  console.log('played the video!');
+const storedTime = localStorage.getItem('videoplayer-current-time');
 
-  const storedTime = localStorage.getItem('videoplayer-current-time');
-
-  if (storedTime) {
-    player.setCurrentTime(storedTime);
-    localStorage.removeItem('videoplayer-current-time');
-  }
-  console.log('played the video!');
-});
-
-player.getVideoTitle().then(function (title) {
-  console.log('title:', title);
-});
+if (storedTime) {
+  player.setCurrentTime(storedTime);
+  localStorage.removeItem('videoplayer-current-time');
+}
+console.log('played the video!');
